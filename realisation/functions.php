@@ -4,15 +4,9 @@ require_once 'db.php';
 
 function obtenirRecettes($pdo) {
     
-    if (!empty($recherche)) {
-        $sql = "SELECT * FROM recipes WHERE name LIKE :nom";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(['nom' => '%' . $recherche . '%']);
-       
-    } else {
-       
-        $stmt = $pdo->query("SELECT * FROM recipes");
-    }
+   
+    $stmt = $pdo->query("SELECT * FROM recipes");
+    
     
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
